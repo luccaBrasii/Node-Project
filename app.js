@@ -7,7 +7,14 @@ const PORT = process.env.PORT || 3000;
 
 //Config
     //Template Engine
-        app.engine('handlebars', handlebars.engine({ defaultLayout: 'main' }));
+        app.engine('handlebars', handlebars.engine({ 
+            defaultLayout: 'main', 
+            runtimeOptions: {
+                allowProtoPropertiesByDefault: true,
+                allowProtoMethodsByDefault: true,
+                } 
+             })
+        );
         app.set('view engine', 'handlebars');
         app.set('views', './views');
     //Body-parser
@@ -21,10 +28,6 @@ const PORT = process.env.PORT || 3000;
         res.status(200).render('formulario');
     })
 
-    app.get('/home', (req,res)=>{
-        res.status(200).render('home')
-    })
-   
 
 //Inicia o Servidor
     app.listen(PORT, () => {
